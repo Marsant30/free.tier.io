@@ -1,0 +1,50 @@
+import React from "react";
+
+const regions = {
+  available: [
+    { name: "South Korea Central", code: "icn" },
+    { name: "Germany Central (Frankfurt)", code: "fra" },
+    { name: "Japan East (Tokyo)", code: "nrt" },
+    { name: "Brazil East (São Paulo)", code: "gru" },
+    { name: "UK South (London)", code: "lhr" },
+  ],
+  unavailable: [
+    { name: "US East (Ashburn)", code: "iad" },
+    { name: "US West (Phoenix)", code: "phx" },
+  ],
+};
+
+export default function OracleArmChecker() {
+  return (
+    <div className="min-h-screen bg-black text-white p-6">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="text-3xl font-bold text-green-400 mb-4">Disponibilidade ARM - Oracle Free Tier</h1>
+        <p className="mb-6 text-gray-300">
+          Confira abaixo as regiões que <strong>geralmente</strong> estão com instâncias ARM (Ampere) disponíveis:
+        </p>
+
+        <div className="space-y-4">
+          {regions.available.map((region) => (
+            <div
+              key={region.code}
+              className="bg-gray-800 p-4 rounded-2xl border-l-4 border-green-500 shadow-md"
+            >
+              <h2 className="text-xl font-semibold">{region.name}</h2>
+              <p className="text-sm text-green-300">Ampere geralmente disponível</p>
+            </div>
+          ))}
+
+          {regions.unavailable.map((region) => (
+            <div
+              key={region.code}
+              className="bg-gray-800 p-4 rounded-2xl border-l-4 border-red-500 shadow-md"
+            >
+              <h2 className="text-xl font-semibold">{region.name}</h2>
+              <p className="text-sm text-red-300">Ampere geralmente indisponível</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
